@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <!-- <script src="jquery-3.3.1.js"></script> -->
+    
+    <ul>
+        <li class="item"></li>
+    </ul>
+    <script>
+    //    jQuery('li').css('background' , 'red');
+        (function () {
+            window.jQuery = jQuery;
+            window.$ = window.jQuery;
+            function jQuery (selctor) {
+                return new jQuery.prototype.init(selctor);
+            }
+
+            jQuery.prototype.init = function (selctor, content) {
+                var oDom = document.getElementsByTagName(selctor);
+                for (var i = 0; i < oDom.length; i++) {
+                    this[i] = oDom[i];
+                }
+                return this;
+            }
+
+            jQuery.prototype.css = function () {
+                console.log(2222);
+                return this;
+            }
+            
+            jQuery.prototype.init.prototype = jQuery.prototype;
+
+        }) ()
+        $('li').css();
+    </script>
+
+</body>
+</html>
